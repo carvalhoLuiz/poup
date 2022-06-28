@@ -1,16 +1,16 @@
+import { DatabaseModule } from './infrastructure/database/database.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { HelloWorldResolver } from './app/helloWorld/helloWorld.resolver';
 
 @Module({
     imports: [
+        DatabaseModule,
         GraphQLModule.forRoot<ApolloDriverConfig>({
             driver: ApolloDriver,
             autoSchemaFile: true,
             playground: true,
         }),
     ],
-    providers: [HelloWorldResolver],
 })
 export class AppModule {}
